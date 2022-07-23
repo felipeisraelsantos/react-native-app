@@ -62,3 +62,15 @@ declare module "*.svg" {
 https://phosphoricons.com/
 
 npm install --save phosphor-react-native
+
+### Instalando react navigation 
+
+https://reactnavigation.org/docs/getting-started/
+
+npm install @react-navigation/native
+
+expo install react-native-screens
+
+https://reactnavigation.org/docs/hello-react-navigation
+
+npm install @react-navigation/native-stack
