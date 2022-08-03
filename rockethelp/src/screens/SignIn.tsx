@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import auth from '@react-native-firebase/auth';
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/Config"
+
 import { VStack, Heading, Icon, useTheme } from 'native-base';
 import { Envelope, Key } from 'phosphor-react-native';
 
@@ -17,31 +20,18 @@ export function SignIn() {
   const { colors } = useTheme();
 
   function handleSignIn() {
+
+    signInWithEmailAndPassword(auth, email, password).then(
+      response => {
+        console.log(response);
+      }
+    );
+    
     if (!email || !password) {
       return Alert.alert("Entrar", "informe e-mail e senha");
     }
     setIsLoading(true);
-
-    auth()
-    .signInWithEmailAndPassword(email, password)
-    .catch((error) => {
-      console.log(error);
-      setIsLoading(false);
-
-      // if (error.code === 'auth/invalid-email') {
-      //   return Alert.alert('Entrar', 'E-mail inválido.');
-      // }
-
-      // if (error.code === 'auth/wrong-password') {
-      //   return Alert.alert('Entrar', 'E-mail ou senha inválida.');
-      // }
-
-      // if (error.code === 'auth/user-not-found') {
-      //   return Alert.alert('Entrar', 'E-mail ou senha inválida.');
-      // }
-
-      // return Alert.alert('Entrar', 'Não foi possível acessar');
-    });
+   
   }
 
   return (
